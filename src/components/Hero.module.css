@@ -71,8 +71,8 @@
 .headline {
   font-family: var(--font-broadcast);
   font-weight: 800;
-  font-size: clamp(2.8rem, 9vw, 7rem);
-  line-height: 0.94;
+  font-size: clamp(1.4rem, 9vw, 7rem);
+  line-height: 0.97;
   letter-spacing: -0.02em;
   color: var(--ink);
   margin-bottom: 8px;
