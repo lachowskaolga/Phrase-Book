@@ -1,0 +1,7 @@
+.list {
+  list-style: none;
+  padding: 12px 28px 88px;
+}
+
+@media (min-width: 768px)  { .list { padding-inline: 40px; } }
+@media (min-width: 1280px) { .list { padding-inline: 80px; max-width: 1100px; } }

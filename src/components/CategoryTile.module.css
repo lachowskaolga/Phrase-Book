@@ -1,0 +1,221 @@
+@keyframes tileChaos {
+  from {
+    opacity: 0;
+    transform: translateX(var(--tx)) translateY(var(--ty)) rotate(var(--tr)) scale(0.55);
+  }
+  55% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0) rotate(0deg) scale(1);
+  }
+}
+
+/* ── Base tile ── */
+.tile {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  padding: 20px 16px 16px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-height: 158px;
+  box-shadow: var(--sh-xs);
+  opacity: 0;
+}
+
+/* Chaos fly-in triggered on scroll into view */
+.tile.visible {
+  animation: tileChaos 1.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* After animation ends — re-enable hover transitions */
+.tile.settled {
+  animation: none;
+  opacity: 1;
+  transform: none;
+  transition:
+    transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.2s ease;
+}
+
+/* Colour accent bar */
+.tile::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--t-accent);
+  border-radius: 20px 20px 0 0;
+  opacity: 0.65;
+  transition: height 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+}
+
+/* Hover wash overlay */
+.tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--t-wash);
+  opacity: 0;
+  transition: opacity 0.22s ease;
+  pointer-events: none;
+}
+
+.tile.settled:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sh-md), 0 0 0 1.5px var(--t-accent);
+  border-color: transparent;
+}
+
+.tile.settled:hover::before { height: 5px; opacity: 1; }
+.tile.settled:hover::after  { opacity: 1; }
+.tile.settled:active        { transform: translateY(-2px); }
+
+.tile:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* ── Header row ── */
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.iconWrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--t-icon-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tile.settled:hover .iconWrap {
+  transform: scale(1.1) rotate(-4deg);
+}
+
+.emoji {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.arrow {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: var(--t-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.82rem;
+  opacity: 0;
+  transform: scale(0.75);
+  transition: opacity 0.18s ease, transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+}
+
+.tile:hover .arrow {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ── Text ── */
+.namePl {
+  font-family: var(--font-broadcast);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--ink);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+
+.nameEn {
+  font-family: var(--font-studio);
+  font-weight: 300;
+  font-size: 0.67rem;
+  color: var(--ink-3);
+  line-height: 1.3;
+  margin-bottom: auto;
+  font-style: italic;
+}
+
+/* ── Footer ── */
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule);
+}
+
+.count {
+  font-family: var(--font-studio);
+  font-size: 0.67rem;
+  font-weight: 500;
+  color: var(--ink-4);
+}
+
+.lang {
+  font-family: var(--font-broadcast);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--t-accent);
+  opacity: 0.7;
+}
+
+/* ═══════════════════════════════════════════════
+   ACCENT COLOUR VARIANTS — 6 rotating options
+═══════════════════════════════════════════════ */
+.accent-rose {
+  --t-accent:   var(--rose);
+  --t-wash:     rgba(224, 46, 88, 0.04);
+  --t-icon-bg:  rgba(224, 46, 88, 0.08);
+}
+
+.accent-blue {
+  --t-accent:   var(--blue);
+  --t-wash:     rgba(26, 95, 255, 0.04);
+  --t-icon-bg:  rgba(26, 95, 255, 0.08);
+}
+
+.accent-gold {
+  --t-accent:   var(--gold);
+  --t-wash:     rgba(212, 146, 10, 0.04);
+  --t-icon-bg:  rgba(212, 146, 10, 0.08);
+}
+
+.accent-coral {
+  --t-accent:   var(--coral);
+  --t-wash:     rgba(240, 64, 32, 0.04);
+  --t-icon-bg:  rgba(240, 64, 32, 0.08);
+}
+
+.accent-mint {
+  --t-accent:   var(--mint);
+  --t-wash:     rgba(0, 168, 120, 0.04);
+  --t-icon-bg:  rgba(0, 168, 120, 0.08);
+}
+
+.accent-violet {
+  --t-accent:   var(--violet);
+  --t-wash:     rgba(114, 48, 212, 0.04);
+  --t-icon-bg:  rgba(114, 48, 212, 0.08);
+}

@@ -1,0 +1,160 @@
+/* ═══════════════════════════════════════════════════════════
+   DESIGN TOKENS — Girly palette + Electric Blue
+   Warm dark text (never pure black), layered surfaces
+═══════════════════════════════════════════════════════════ */
+:root {
+  /* Surfaces */
+  --bg:          #fdfcf9;
+  --bg-2:        #FAF8F3;
+  --surface:     #FFFFFF;
+  --surface-2:   #FDF9F6;
+
+  /* Text — warm, layered */
+  --ink:         #251520;
+  --ink-2:       #5C3E52;
+  --ink-3:       #9C7A8C;
+  --ink-4:       #C4A8B8;
+
+  /* Rose */
+  --rose:        #E02E58;
+  --rose-2:      #F5607C;
+  --rose-bg:     #f9e9ec;
+  --rose-mid:    #FBCCD5;
+
+  /* Blue */
+  --blue:        #1A5FFF;
+  --blue-2:      #4D80FF;
+  --blue-bg:     #d9e2fa;
+  --blue-mid:    #AABFFF;
+
+  /* Accents */
+  --gold:        #D4920A;
+  --gold-bg:     #fbfaf0;
+  --gold-mid:    #F5D88A;
+  --coral:       #F04020;
+  --coral-bg:    #FFF2EE;
+  --mint:        #07040e;
+  --mint-bg:     #E3FAF4;
+  --violet:      #7230D4;
+  --violet-bg:   #F3EDFF;
+
+  /* Borders */
+  --rule:        rgba(37, 21, 32, 0.09);
+  --rule-2:      rgba(37, 21, 32, 0.16);
+
+  /* Shadows */
+  --sh-xs:       0 1px 2px rgba(37, 21, 32, 0.06);
+  --sh-sm:       0 2px 8px rgba(37, 21, 32, 0.08), 0 1px 2px rgba(37, 21, 32, 0.04);
+  --sh-md:       0 6px 20px rgba(37, 21, 32, 0.10), 0 2px 6px rgba(37, 21, 32, 0.05);
+  --sh-lg:       0 16px 40px rgba(37, 21, 32, 0.12), 0 4px 10px rgba(37, 21, 32, 0.06);
+
+  /* Typography */
+  --font-broadcast: 'Syne', sans-serif;
+  --font-studio:    'Space Grotesk', sans-serif;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESET
+═══════════════════════════════════════════════════════════ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-studio);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.5;
+  overflow-x: hidden;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input,
+button {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════════════════════ */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes swirlIn {
+  from {
+    opacity: 0;
+    transform: translateX(110px) rotate(14deg) scale(0.93);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) rotate(0deg) scale(1);
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

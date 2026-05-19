@@ -1,0 +1,115 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-x: hidden;
+}
+
+.main > *:nth-child(1) {
+  animation: swirlIn 1.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0s;
+}
+.main > *:nth-child(2) {
+  animation: swirlIn 1.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.24s;
+}
+.main > *:nth-child(3) {
+  animation: swirlIn 1.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.48s;
+}
+.main > *:nth-child(4) {
+  animation: swirlIn 1.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.72s;
+}
+.main > *:nth-child(5) {
+  animation: swirlIn 1.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.96s;
+}
+
+/* ── Search zone ── */
+.searchZone {
+  padding: 0 28px 32px;
+  position: relative;
+}
+
+@media (min-width: 768px)  { .searchZone { padding-inline: 40px; } }
+@media (min-width: 1280px) { .searchZone { padding-inline: 80px; } }
+
+/* ── Section row ── */
+.sectionRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0 28px 16px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 28px;
+}
+
+@media (min-width: 768px)  { .sectionRow { padding-inline: 40px; } }
+@media (min-width: 1280px) { .sectionRow { padding-inline: 80px; } }
+
+.sectionLabel {
+  font-family: var(--font-broadcast);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.sectionHint {
+  font-family: var(--font-studio);
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--ink-4);
+  font-style: italic;
+}
+
+/* ── Grid zone ── */
+.gridZone {
+  padding: 0 28px 80px;
+}
+
+@media (min-width: 768px)  { .gridZone { padding-inline: 40px; } }
+@media (min-width: 1280px) { .gridZone { padding-inline: 80px; max-width: 1440px; margin-inline: auto; } }
+
+.noResults {
+  padding: 40px 0;
+  font-family: var(--font-studio);
+  font-weight: 300;
+  font-size: 0.9rem;
+  color: var(--ink-3);
+  text-align: center;
+  font-style: italic;
+}
+
+/* ── Footer ── */
+.footer {
+  margin-top: auto;
+  padding: 24px 28px calc(24px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+@media (min-width: 768px)  { .footer { padding-inline: 40px; } }
+@media (min-width: 1280px) { .footer { padding-inline: 80px; } }
+
+.footerBrand {
+  font-family: var(--font-broadcast);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+}
+
+.footerNote {
+  font-family: var(--font-studio);
+  font-weight: 300;
+  font-size: 0.72rem;
+  color: var(--ink-4);
+  font-style: italic;
+}

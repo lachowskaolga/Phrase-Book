@@ -1,0 +1,155 @@
+.row {
+  display: flex;
+  align-items: stretch;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  margin-bottom: 7px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--sh-xs);
+  transition:
+    transform 0.16s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.16s ease,
+    border-color 0.16s ease;
+}
+
+.row:hover {
+  transform: translateX(4px);
+  box-shadow: var(--sh-sm);
+  border-color: var(--rule-2);
+}
+
+.row:active {
+  transform: translateX(2px);
+}
+
+.row:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* ── Left stripe ── */
+.stripe {
+  width: 4px;
+  flex-shrink: 0;
+  background: var(--rose); /* overridden via inline style */
+  border-radius: 14px 0 0 14px;
+  opacity: 0.45;
+  transition: opacity 0.16s ease;
+}
+
+.row:hover .stripe {
+  opacity: 0.85;
+}
+
+/* ── Text body ── */
+.body {
+  flex: 1;
+  min-width: 0;
+  padding: 13px 14px 13px 16px;
+  display: grid;
+  grid-template-columns: 28px 1fr 1fr;
+  gap: 0 12px;
+  align-items: center;
+}
+
+/* Collapse EN column on narrow screens — EN always stacked below PL */
+@media (max-width: 560px) {
+  .body {
+    grid-template-columns: 26px 1fr;
+    row-gap: 4px;
+  }
+}
+
+.bodyExpanded {
+  grid-template-columns: 26px 1fr !important;
+  row-gap: 4px;
+}
+
+/* ── Number ── */
+.num {
+  font-family: var(--font-broadcast);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink-4);
+  text-align: right;
+  padding-right: 4px;
+}
+
+/* ── Polish text — Studio medium ── */
+.textPl {
+  font-family: var(--font-studio);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+/* ── English text — Studio light italic ── */
+.textEn {
+  font-family: var(--font-studio);
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--ink-3);
+  line-height: 1.45;
+  font-style: italic;
+}
+
+/* On mobile: always show EN below PL, same size, Polish bold */
+@media (max-width: 560px) {
+  .textPl {
+    font-weight: 700;
+  }
+
+  .textEn {
+    display: block;
+    grid-column: 2;
+    font-size: 0.92rem;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--ink-2);
+  }
+}
+
+/* ── Copy action ── */
+.action {
+  flex-shrink: 0;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+}
+
+.copyBtn {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: var(--bg);
+  border: 1px solid var(--rule-2);
+  color: var(--ink-3);
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.15s ease, background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+  pointer-events: none;
+}
+
+.row:hover .copyBtn {
+  opacity: 1;
+}
+
+.copyBtnActive {
+  background: var(--mint-bg) !important;
+  color: var(--mint) !important;
+  border-color: var(--mint) !important;
+  opacity: 1 !important;
+  transform: scale(1.1);
+}
+
+/* Copied row state */
+.copied {
+  background: var(--bg-2);
+}
